@@ -4,11 +4,13 @@
   --secondary-brown: #523d39;
   --third-brown: #746461;
   --primary-white: white;
+  --nav-hight: 90px;
 }
 
 body {
   font-family: "DM Sans", sans-serif;
   margin: 30px;
+  padding-top: var(--nav-hight);
 }
 
 /* Navigation bar */
@@ -20,7 +22,13 @@ body {
   justify-content: space-between;
   color: var(--primary-brown);
   margin-bottom: 50px;
-  position: sticky;
+  position: fixed;
+  background-color: var(--primary-white);
+  z-index: 2;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  height: var(--nav-hight);
 }
 
 .store-logo {
