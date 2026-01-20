@@ -1,0 +1,124 @@
+:root {
+  --primary-green: #45a049;
+  --primary-brown: #3e2723;
+  --secondary-brown: #523d39;
+  --third-brown: #746461;
+  --primary-white: white;
+}
+
+* {
+  font-family: Inter, sans-serif;
+}
+
+footer {
+  background-color: var(--primary-brown);
+  padding: 40px;
+  margin: 30px;
+  border-radius: 30px;
+}
+
+.footer-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.footer-heading {
+  color: var(--primary-white);
+  display: flex;
+}
+
+.footer-heading img {
+  width: 40px;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.subscribe-form {
+  margin-top: 20px;
+}
+
+.subscribe-form .email-box,
+.subscribe-form .subscribe-btn {
+  height: 50px;
+  /* padding: 20px; */
+  box-sizing: border-box;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.subscribe-form .email-box {
+  background-color: var(--secondary-brown);
+  border: 1px solid var(--third-brown);
+  padding-left: 15px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.subscribe-form .subscribe-btn {
+  padding: 0 30px 0 30px;
+  background-color: var(--primary-green);
+  border: 1px solid var(--primary-green);
+  color: var(--primary-white);
+}
+
+.footer-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.footer-body h3 {
+  margin-bottom: 2px;
+  color: var(--primary-white);
+}
+
+.footer-body .info-section .item a {
+  text-decoration: none;
+  color: var(--third-brown);
+}
+
+.footer-body .info-section .item a:hover {
+  color: var(--primary-white);
+}
+
+.footer-body .info-section .item {
+  margin-bottom: 10px;
+}
+
+.dev-info {
+  color: var(--third-brown);
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.dev-info a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 800px) {
+  footer {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .footer-header {
+    display: block;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-body {
+    display: block;
+  }
+
+  .footer-body .info-section {
+    margin-bottom: 20px;
+  }
+}
