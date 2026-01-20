@@ -125,6 +125,12 @@ body {
   background-color: #f5f1e8;
 }
 
+.best-sellers-section .items .item:hover {
+  box-shadow: 5px 5px 12px 3px rgba(135, 127, 125, 0.72);
+  -webkit-box-shadow: 5px 5px 12px 3px rgba(135, 127, 125, 0.72);
+  -moz-box-shadow: 5px 5px 12px 3px rgba(135, 127, 125, 0.72);
+}
+
 .best-sellers-section .items .item .item-image {
   /* width: 300px; */
   height: 300px;
