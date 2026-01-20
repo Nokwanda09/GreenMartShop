@@ -1,9 +1,10 @@
 :root {
-  --primary-green: rgba(69, 160, 73);
+  --primary-green: #45a049;
   --primary-brown: #3e2723;
   --secondary-brown: #523d39;
   --third-brown: #746461;
   --primary-white: white;
+  --extra-detail-color: #4e5865;
   --nav-hight: 90px;
 }
 
@@ -164,7 +165,7 @@ body {
 }
 
 .food-category {
-  color: #4e5865;
+  color: var(--extra-detail-color);
   margin-bottom: 5px;
 }
 
@@ -188,6 +189,55 @@ body {
 .add-to-cart-btn:hover {
   color: var(--primary-white);
   background-color: var(--primary-green);
+}
+
+/* Browse section */
+.browse-section {
+  background-color: rgba(220, 228, 223, 0.5);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.browse-section .section {
+  padding: 150px;
+}
+
+/* .browse-section .section .content {
+  margin: 0 auto;
+} */
+
+.browse-section .section .icon {
+  background-color: var(--primary-white);
+  padding: 20px;
+  width: fit-content;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.browse-section .section .category {
+  color: var(--secondary-brown);
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.browse-section .section .number-of-items {
+  color: var(--extra-detail-color);
+  text-align: center;
+  margin: 15px 0 15px 0;
+}
+
+.browse-section .section .link-to-shop {
+  text-align: center;
+}
+
+.browse-section .section .link-to-shop a {
+  color: var(--primary-green);
+  text-decoration: none;
+}
+
+.browse-section .section .link-to-shop img {
+  margin-top: 15px;
 }
 
 /* Footer */
