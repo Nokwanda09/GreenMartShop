@@ -6,8 +6,47 @@
   --primary-white: white;
 }
 
-* {
+body {
   font-family: Inter, sans-serif;
+}
+
+.nav-bar {
+  padding: 20px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary-brown);
+}
+
+.store-logo {
+  display: flex;
+  gap: 3px;
+}
+
+.store-logo .store-name {
+  margin-bottom: 5px;
+  color: var(--primary-brown);
+}
+
+.store-logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-options {
+  display: flex;
+  gap: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+
+.nav-options .option {
+  font-weight: 600;
+}
+
+.active {
+  border-bottom: 3px var(--primary-green) solid;
+  color: var(--primary-green);
 }
 
 footer {
