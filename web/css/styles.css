@@ -23,6 +23,16 @@ a {
   color: inherit;
 }
 
+h1 {
+  color: var(--secondary-brown);
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  color: var(--extra-detail-color);
+}
+
 /* Navigation bar */
 .nav-bar {
   padding: 20px;
@@ -116,6 +126,10 @@ a {
 .hero-text a:hover {
   border: 1px solid var(--third-brown);
   cursor: pointer;
+}
+
+.hero-text p {
+  color: var(--primary-white);
 }
 
 /* Featured Products section */
