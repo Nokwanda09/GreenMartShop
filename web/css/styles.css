@@ -164,19 +164,19 @@ a {
   padding: 10px;
 }
 
-.food-name {
+.product-name {
   color: var(--primary-brown);
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.food-category {
+.product-category {
   color: var(--extra-detail-color);
   margin-bottom: 5px;
 }
 
-.price {
+.product-price {
   color: var(--primary-green);
   font-weight: bold;
   font-size: 25px;
