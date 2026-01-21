@@ -86,7 +86,31 @@
   margin-top: 14px;
 }
 
-.buttons {
+/* Order Summary */
+.order-summary {
+  margin-top: 20px;
+  background-color: #f5f1e8;
+  padding: 20px;
+}
+
+.order-summary h2,
+.order-summary h3 {
+  color: var(--primary-brown);
+}
+
+.order-summary h3 {
+  border-top: 1px solid var(--extra-detail-color);
+  padding-top: 20px;
+}
+
+.invoice-summary {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headings,
+.amounts {
+  color: var(--extra-detail-color);
 }
 
 /* footer */

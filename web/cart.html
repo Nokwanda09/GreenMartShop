@@ -37,32 +37,50 @@
     <div class="cart">
       <div class="cart-items">
         <h1>Your Cart:</h1>
-        <div class="cart-content">
-          <div class="item-card">
-            <div class="left-group">
-              <div class="item-image">
-                <img src="images/banana.jpg" alt="" />
-              </div>
-              <div class="item-info">
-                <div class="product-name">Banana</div>
-                <div class="product-category">Fruits</div>
-                <div class="product-price">R12,99</div>
-              </div>
+        <div class="item-card">
+          <div class="left-group">
+            <div class="item-image">
+              <img src="images/banana.jpg" alt="" />
             </div>
-            <div class="left-group">
-              <div class="buttons">
-                <button>-</button>
-                <div class="no-of-items">1</div>
-                <button>+</button>
-                <div class="delete-icon">
-                  <img src="icons/delete.svg" alt="" />
-                </div>
+            <div class="item-info">
+              <div class="product-name">Banana</div>
+              <div class="product-category">Fruits</div>
+              <div class="product-price">R12,99</div>
+            </div>
+          </div>
+          <div class="left-group">
+            <div class="buttons">
+              <button>-</button>
+              <div class="no-of-items">1</div>
+              <button>+</button>
+              <div class="delete-icon">
+                <img src="icons/delete.svg" alt="" />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="order-summary"></div>
+
+      <!-- Order summary -->
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+
+        <!-- Invoice -->
+        <div class="invoice">
+          <div class="invoice-summary">
+            <div class="headings">
+              <div class="heading">Subtotal</div>
+              <div class="heading">Delivery Fee</div>
+              <h3 class="total">Total</h3>
+            </div>
+            <div class="amounts">
+              <div class="amount">R120.97</div>
+              <div class="amount">R20.99</div>
+              <h3 class="total-amount">R141,96</h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Footer -->
