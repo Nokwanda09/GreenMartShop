@@ -146,6 +146,10 @@ footer {
   margin-top: 70px;
 }
 
+.footer-heading h2 {
+  color: var(--primary-white);
+}
+
 @media (min-width: 1366px) {
   .cart {
     display: grid;
