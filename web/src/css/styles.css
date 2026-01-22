@@ -78,7 +78,7 @@ p {
   font-weight: 600;
 }
 
-.active {
+.option.active {
   border-bottom: 3px var(--primary-green) solid;
   color: var(--primary-green);
 }
