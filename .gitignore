@@ -1,0 +1,12 @@
+# IDE/editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment Variables
+**/.env
+
+# Node modules
+node_modules/
+**/node_modules/
