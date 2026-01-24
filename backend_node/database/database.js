@@ -12,3 +12,7 @@ const pool = mysql
     database: process.env.DATABASE,
   })
   .promise();
+
+export async function getCustomer(email) {
+  return await pool.query("SELECT * FROM customers WHERE email = ?", [email]);
+}
