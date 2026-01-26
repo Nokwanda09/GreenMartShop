@@ -1,5 +1,3 @@
-//  Display items to the web page
-
 async function fetchProducts() {
   try {
     const response = await fetch("http://localhost:3000/products");
@@ -15,27 +13,73 @@ async function fetchProducts() {
   }
 }
 
-async function randomlyPickItemsForMainPage() {
+function randomlyPickItemsForMainPage(products) {
   const noOfItems = 6;
-  const products = await fetchProducts();
-  let mainPageItems = [];
+  let mainPageItems = new Set();
 
-  for (let i = 0; i < noOfItems; i++) {
+  while (mainPageItems.size < noOfItems) {
     const randomItem = products[Math.floor(Math.random() * products.length)];
-
-    for (let item of mainPageItems) {
-      if (item in mainPageItems) continue;
-    }
-
-    mainPageItems.push(randomItem);
+    mainPageItems.add(randomItem);
   }
 
   return mainPageItems;
 }
 
-function displayProducts(products) {
+// Display store products in the index.html page
+function displayProductsInMainPage(products) {
+  const featuredProductsSection = document.querySelector(".products");
+
+  products.forEach((product) => {
+    const productCard = document.createElement("div");
+    productCard.classList.add("product");
+    featuredProductsSection.appendChild(productCard);
+
+    const imageSection = document.createElement("div");
+    imageSection.classList.add("product-image");
+    const image = document.createElement("img");
+    image.src = product.image;
+    image.alt = product.name;
+    imageSection.appendChild(image);
+
+    // Contains info abbout the product
+    const secondSection = document.createElement("div");
+    secondSection.classList.add("second-section");
+
+    const productInfo = document.createElement("div");
+    productInfo.classList.add("product-info");
+
+    const productCategory = document.createElement("div");
+    productCategory.classList.add("product-category");
+    productCategory.textContent = product.category;
+
+    const productName = document.createElement("div");
+    productName.classList.add("product-name");
+    productName.textContent = product.name;
+
+    const productPrice = document.createElement("div");
+    productPrice.classList.add("product-price");
+    productPrice.textContent = `R${product.price}`;
+
+    const addToCartBtn = document.createElement("button");
+    addToCartBtn.type = "button";
+    addToCartBtn.classList.add("add-to-cart-btn");
+    addToCartBtn.textContent = "Add To Cart";
+
+    productInfo.appendChild(productName);
+    productInfo.appendChild(productCategory);
+    productInfo.appendChild(productPrice);
+
+    secondSection.appendChild(productInfo);
+    secondSection.appendChild(addToCartBtn);
+
+    productCard.appendChild(imageSection);
+    productCard.appendChild(secondSection);
+  });
+}
+
+// Display store products in the shop.html page
+function displayProductsInShopping(products) {
   const productsSection = document.querySelector(".products");
-  console.log(productsSection);
   products.forEach((product) => {
     const productCard = document.createElement("div");
     productCard.classList.add("product");
@@ -81,26 +125,17 @@ function displayProducts(products) {
     productCard.appendChild(productName);
     productCard.appendChild(rowForExtraInfo);
     productCard.appendChild(AddToCartBtn);
-
-    // productCard.innerHTML = `
-    // <div class="product-image">
-    //       <img src="${product.image}" alt="" />
-    //     </div>
-    //     <div class="product-category">${product.category}</div>
-    //     <div class="product-name">${product.name}</div>
-    //     <div class="row">
-    //       <div class="product-price">R${product.price}</div>
-    //       <div class="product-availability">In stock</div>
-    //     </div>
-    //     <button type="button" class="add-to-cart-btn" id="add-to-cart-btn">
-    //       Add to Cart
-    //     </button>
-    // `;
   });
 }
 
-window.addEventListener("load", async () => {
-  const products = await randomlyPickItemsForMainPage();
-  console.log(products);
-  displayProducts(products);
+window.addEventListener("DOMContentLoaded", async () => {
+  const products = await fetchProducts();
+  const path = window.location.pathname;
+
+  if (path.includes("/index.html")) {
+    const itemsForMainPage = randomlyPickItemsForMainPage(products);
+    displayProductsInMainPage(itemsForMainPage);
+  } else if (path.includes("/shop.html")) {
+    displayProductsInShopping(products);
+  }
 });
