@@ -1,2 +1,2 @@
 run-database:
-	cd database && node database.js
+	node database/database.js
