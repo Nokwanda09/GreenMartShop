@@ -1,9 +1,12 @@
 import express from "express";
+import cors from "cors";
 
 import { getProducts, getCustomer, getProduct } from "./service/service.js";
 
 const app = express();
 app.use(express.json());
+
+app.use(cors());
 
 app.get("/products", async (req, res) => {
   const products = await getProducts();
