@@ -184,11 +184,13 @@ p {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 5px;
+  text-transform: capitalize;
 }
 
 .product-category {
   color: var(--extra-detail-color);
   margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 .product-price {
