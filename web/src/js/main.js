@@ -1,3 +1,7 @@
+// List of cart items
+let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+let products = [];
+
 async function fetchProducts() {
   try {
     const response = await fetch("http://localhost:3000/products");
@@ -137,8 +141,60 @@ export function displayProductsInShopping(products) {
   }
 }
 
+// Add to cart functionality
+function addItemToCart() {
+  const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
+
+  addToCartBtns.forEach((addToCartBtn) => {
+    addToCartBtn.addEventListener("click", () => {
+      // Change the appearance of the card
+      addToCartBtn.textContent = "Added!";
+
+      setTimeout(() => {
+        addToCartBtn.textContent = "Add To Cart";
+      }, 3000);
+
+      // Add selected item to the card
+      const productSelected = addToCartBtn.closest(".product");
+
+      addItem(productSelected);
+    });
+  });
+}
+
+function addItem(selectedItem) {
+  const productName = selectedItem.querySelector(".product-name").textContent;
+  const productPrice = selectedItem
+    .querySelector(".product-price")
+    .textContent.replace("R", "");
+  const productCategory =
+    selectedItem.querySelector(".product-category").textContent;
+
+  const itemAlreadyInCart = cartItems.find(
+    (item) => item.name === selectedItem,
+  );
+
+  if (itemAlreadyInCart) {
+    itemAlreadyInCart.quantity++;
+  } else {
+    cartItems.push({
+      name: productName,
+      price: productPrice,
+      category: productCategory,
+      quantity: 1,
+    });
+  }
+  // console.log(cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // console.log(localStorage.getItem("cartItems"));
+}
+
+export function getCartItems() {
+  return cartItems;
+}
+
 window.addEventListener("DOMContentLoaded", async () => {
-  const products = await fetchProducts();
+  products = await fetchProducts();
   const path = window.location.pathname;
 
   if (path.includes("/index.html")) {
@@ -147,4 +203,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   } else if (path.includes("/shop.html")) {
     displayProductsInShopping(products);
   }
+
+  addItemToCart();
 });
+
+console.log(localStorage.getItem("cartItems"));
