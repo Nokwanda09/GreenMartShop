@@ -18,9 +18,14 @@ filterItems.forEach((filterItem) => {
 
 async function getCategoryProducts(category) {
   category = category.toLowerCase();
+  let response;
 
   try {
-    const response = await fetch(`http://localhost:3000/category/${category}`);
+    if (category === "all") {
+      response = await fetch(`http://localhost:3000/products`);
+    } else {
+      response = await fetch(`http://localhost:3000/category/${category}`);
+    }
 
     if (!response.ok) {
       console.log(response);

@@ -81,54 +81,60 @@ function displayProductsInMainPage(products) {
 export function displayProductsInShopping(products) {
   const productsSection = document.querySelector(".products");
 
-  productsSection.innerHTML = ""; // 🔥 CLEAR FIRST
+  productsSection.innerHTML = "";
 
-  products.forEach((product) => {
-    const productCard = document.createElement("div");
-    productCard.classList.add("product");
+  if (products.length === 0) {
+    const notification = document.createElement("h1");
+    notification.textContent = "No items to display";
+    productsSection.appendChild(notification);
+  } else {
+    products.forEach((product) => {
+      const productCard = document.createElement("div");
+      productCard.classList.add("product");
 
-    productsSection.appendChild(productCard);
+      productsSection.appendChild(productCard);
 
-    const imageSection = document.createElement("div");
-    imageSection.classList.add("product-image");
-    const image = document.createElement("img");
-    image.src = product.image;
-    image.alt = product.name;
-    imageSection.appendChild(image);
+      const imageSection = document.createElement("div");
+      imageSection.classList.add("product-image");
+      const image = document.createElement("img");
+      image.src = product.image;
+      image.alt = product.name;
+      imageSection.appendChild(image);
 
-    const productCategory = document.createElement("div");
-    productCategory.classList.add("product-category");
-    productCategory.textContent = product.category;
+      const productCategory = document.createElement("div");
+      productCategory.classList.add("product-category");
+      productCategory.textContent = product.category;
 
-    const productName = document.createElement("div");
-    productName.classList.add("product-name");
-    productName.textContent = product.name;
+      const productName = document.createElement("div");
+      productName.classList.add("product-name");
+      productName.textContent = product.name;
 
-    const rowForExtraInfo = document.createElement("div");
-    rowForExtraInfo.classList.add("row");
+      const rowForExtraInfo = document.createElement("div");
+      rowForExtraInfo.classList.add("row");
 
-    const productPrice = document.createElement("div");
-    productPrice.classList.add("product-price");
-    productPrice.textContent = `R${product.price}`;
+      const productPrice = document.createElement("div");
+      productPrice.classList.add("product-price");
+      productPrice.textContent = `R${product.price}`;
 
-    const productAvailability = document.createElement("div");
-    productAvailability.classList.add("product-availability");
-    productAvailability.textContent = "In Stock";
+      const productAvailability = document.createElement("div");
+      productAvailability.classList.add("product-availability");
+      productAvailability.textContent = "In Stock";
 
-    rowForExtraInfo.appendChild(productPrice);
-    rowForExtraInfo.appendChild(productAvailability);
+      rowForExtraInfo.appendChild(productPrice);
+      rowForExtraInfo.appendChild(productAvailability);
 
-    const AddToCartBtn = document.createElement("button");
-    AddToCartBtn.type = "button";
-    AddToCartBtn.classList.add("add-to-cart-btn");
-    AddToCartBtn.textContent = "Add To Cart";
+      const AddToCartBtn = document.createElement("button");
+      AddToCartBtn.type = "button";
+      AddToCartBtn.classList.add("add-to-cart-btn");
+      AddToCartBtn.textContent = "Add To Cart";
 
-    productCard.appendChild(imageSection);
-    productCard.appendChild(productCategory);
-    productCard.appendChild(productName);
-    productCard.appendChild(rowForExtraInfo);
-    productCard.appendChild(AddToCartBtn);
-  });
+      productCard.appendChild(imageSection);
+      productCard.appendChild(productCategory);
+      productCard.appendChild(productName);
+      productCard.appendChild(rowForExtraInfo);
+      productCard.appendChild(AddToCartBtn);
+    });
+  }
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
