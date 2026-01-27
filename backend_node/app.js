@@ -1,7 +1,12 @@
 import express from "express";
 import cors from "cors";
 
-import { getProducts, getCustomer, getProduct } from "./service/service.js";
+import {
+  getProducts,
+  getCustomer,
+  getProduct,
+  getProductsFromCategory,
+} from "./service/service.js";
 
 const app = express();
 app.use(express.json());
@@ -23,6 +28,12 @@ app.get("/:product", async (req, res) => {
   const product = await getProduct(req.params.product);
 
   res.send(product);
+});
+
+app.get("/category/:category", async (req, res) => {
+  const products = await getProductsFromCategory(req.params.category);
+
+  res.send(products);
 });
 
 app.use((err, req, res, next) => {

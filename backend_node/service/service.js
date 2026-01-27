@@ -2,6 +2,7 @@ import {
   getProductsFromDb,
   getCustomerFromDb,
   getProductFromDb,
+  getProductsFromSpecificCarFromDb,
 } from "../database/database.js";
 
 export async function getProducts() {
@@ -15,6 +16,10 @@ export async function getCustomer(email) {
 
 export async function getProduct(name) {
   return await getProductFromDb(name);
+}
+
+export async function getProductsFromCategory(category) {
+  return await getProductsFromSpecificCarFromDb(category);
 }
 
 async function customerExists(email) {

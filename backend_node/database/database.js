@@ -2,7 +2,6 @@ import mysql from "mysql2";
 import path from "path";
 
 import dotenv from "dotenv";
-// dotenv.config({ path: path.resolve("../.env") });
 dotenv.config();
 
 // Pool of connections to the database
@@ -35,5 +34,11 @@ export async function getProductFromDb(name) {
   return product[0][0];
 }
 
-// console.log(process.env.MYSQL_USER);
-// console.log(await getCustomerFromDb("nokwa@email"));
+export async function getProductsFromSpecificCarFromDb(category) {
+  const products = await pool.query(
+    "SELECT * FROM products WHERE category = ?",
+    [category],
+  );
+
+  return products[0];
+}

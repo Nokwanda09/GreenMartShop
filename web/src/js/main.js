@@ -78,8 +78,11 @@ function displayProductsInMainPage(products) {
 }
 
 // Display store products in the shop.html page
-function displayProductsInShopping(products) {
+export function displayProductsInShopping(products) {
   const productsSection = document.querySelector(".products");
+
+  productsSection.innerHTML = ""; // 🔥 CLEAR FIRST
+
   products.forEach((product) => {
     const productCard = document.createElement("div");
     productCard.classList.add("product");
