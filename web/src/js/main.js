@@ -162,7 +162,7 @@ function addItemToCart() {
   });
 }
 
-function addItem(selectedItem) {
+export function addItem(selectedItem) {
   const productName = selectedItem.querySelector(".product-name").textContent;
   const productPrice = selectedItem
     .querySelector(".product-price")
@@ -170,9 +170,7 @@ function addItem(selectedItem) {
   const productCategory =
     selectedItem.querySelector(".product-category").textContent;
 
-  const itemAlreadyInCart = cartItems.find(
-    (item) => item.name === selectedItem,
-  );
+  const itemAlreadyInCart = cartItems.find((item) => item.name === productName);
 
   if (itemAlreadyInCart) {
     itemAlreadyInCart.quantity++;

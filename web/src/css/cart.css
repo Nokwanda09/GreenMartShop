@@ -4,6 +4,10 @@ h3 {
 }
 
 /* Empty cart */
+.empty-cart {
+  display: none;
+}
+
 .empty-cart .image {
   margin: 0 auto;
   height: 400px;
@@ -90,6 +94,16 @@ h3 {
 .item-info {
   margin-top: 14px;
 }
+
+/* .delete-icon {
+  height: 16px;
+  width: 16px;
+}
+
+.delete-icon img {
+  height: 100%;
+  width: 100%;
+} */
 
 /* Order Summary */
 .order-summary {
