@@ -4,9 +4,12 @@ let cartItems = JSON.parse(localStorage.getItem("cartItems"));
 // console.log(cartItems);
 
 function displayCartItems() {
+  console.log("Displaying cart items");
   const cartItemsSection = document.querySelector(".cart-items");
 
-  if (cartItems) {
+  if (cartItems.length > 0) {
+    console.log("There are items in the cart");
+    console.log(cartItems);
     cartItems.forEach((cartItem) => {
       const itemCard = document.createElement("div");
       itemCard.classList.add("item-card");
@@ -82,6 +85,7 @@ function displayCartItems() {
       itemCard.appendChild(secondLeftGroup);
     });
   } else {
+    console.log("There are no items in the cart");
     emptyCart();
   }
 }
@@ -89,6 +93,9 @@ function displayCartItems() {
 function emptyCart() {
   const emptyCartContent = document.querySelector(".empty-cart");
   emptyCartContent.style.display = "block";
+
+  const cartContent = document.querySelector(".cart");
+  cartContent.style.display = "none";
 }
 
 function decrementQuantity() {
@@ -104,18 +111,21 @@ function decrementQuantity() {
 
       const clickedItem = cartItems.find((item) => item.name === productName);
       console.log(clickedItem);
-      if (clickedItem.quantity > 0) {
+      if (clickedItem.quantity > 1) {
         clickedItem.quantity -= 1;
         console.log(cartItems);
         noOfItems.textContent = "";
         noOfItems.textContent = clickedItem.quantity;
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      } else {
+        itemCard.style.display = "none";
+        cartItems = cartItems.filter((item) => item.name !== clickedItem.name);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        if (cartItems.length === 0) {
+          emptyCart();
+        }
+        console.log(cartItems);
       }
-      // else {
-      //   itemCard.style.display = "none";
-      //   console.log(cartItems.indexOf(clickedItem));
-      //   // cartItems.splice(cartItems.indexOf(clickedItem));
-      // }
     });
   });
 }
@@ -148,8 +158,5 @@ function changeItemQuantity() {
   decrementQuantity();
 }
 
-// window.addEventListener("loaded", () => {
-
-// });
 displayCartItems();
 changeItemQuantity();
