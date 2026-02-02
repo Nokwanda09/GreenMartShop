@@ -1,84 +1,94 @@
 import { addItem } from "./main.js";
 
 let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+console.log(cartItems);
 
 function displayCartItems() {
   const cartItemsSection = document.querySelector(".cart-items");
 
-  cartItems.forEach((cartItem) => {
-    const itemCard = document.createElement("div");
-    itemCard.classList.add("item-card");
+  if (cartItems) {
+    cartItems.forEach((cartItem) => {
+      const itemCard = document.createElement("div");
+      itemCard.classList.add("item-card");
 
-    cartItemsSection.appendChild(itemCard);
+      cartItemsSection.appendChild(itemCard);
 
-    // Left group for styling purposes
-    const firstLeftGroup = document.createElement("div");
-    firstLeftGroup.classList.add("left-group");
+      // Left group for styling purposes
+      const firstLeftGroup = document.createElement("div");
+      firstLeftGroup.classList.add("left-group");
 
-    const itemImage = document.createElement("div");
-    itemImage.classList.add("item-image");
+      const itemImage = document.createElement("div");
+      itemImage.classList.add("item-image");
 
-    const image = document.createElement("img");
-    image.src = "";
-    image.alt = "Product Image";
-    itemImage.appendChild(image);
+      const image = document.createElement("img");
+      image.src = "";
+      image.alt = "Product Image";
+      itemImage.appendChild(image);
 
-    const itemInfo = document.createElement("div");
-    itemInfo.classList.add("item-info");
+      const itemInfo = document.createElement("div");
+      itemInfo.classList.add("item-info");
 
-    const productName = document.createElement("div");
-    productName.classList.add("product-name");
-    productName.textContent = cartItem.name;
+      const productName = document.createElement("div");
+      productName.classList.add("product-name");
+      productName.textContent = cartItem.name;
 
-    const productCategory = document.createElement("div");
-    productCategory.classList.add("product-category");
-    productCategory.textContent = cartItem.category;
+      const productCategory = document.createElement("div");
+      productCategory.classList.add("product-category");
+      productCategory.textContent = cartItem.category;
 
-    const productPrice = document.createElement("div");
-    productPrice.classList.add("product-price");
-    productPrice.textContent = cartItem.price;
+      const productPrice = document.createElement("div");
+      productPrice.classList.add("product-price");
+      productPrice.textContent = cartItem.price;
 
-    itemInfo.appendChild(productName);
-    itemInfo.appendChild(productCategory);
-    itemInfo.appendChild(productPrice);
+      itemInfo.appendChild(productName);
+      itemInfo.appendChild(productCategory);
+      itemInfo.appendChild(productPrice);
 
-    firstLeftGroup.appendChild(itemImage);
-    firstLeftGroup.appendChild(itemInfo);
+      firstLeftGroup.appendChild(itemImage);
+      firstLeftGroup.appendChild(itemInfo);
 
-    const secondLeftGroup = document.createElement("div");
-    itemCard.classList.add("left-group");
+      const secondLeftGroup = document.createElement("div");
+      itemCard.classList.add("left-group");
 
-    const btns = document.createElement("div");
-    btns.classList.add("buttons");
+      const btns = document.createElement("div");
+      btns.classList.add("buttons");
 
-    const minusBtn = document.createElement("button");
-    minusBtn.classList.add("minus-btn");
-    minusBtn.textContent = "-";
+      const minusBtn = document.createElement("button");
+      minusBtn.classList.add("minus-btn");
+      minusBtn.textContent = "-";
 
-    const addBtn = document.createElement("button");
-    addBtn.classList.add("add-btn");
-    addBtn.textContent = "+";
+      const addBtn = document.createElement("button");
+      addBtn.classList.add("add-btn");
+      addBtn.textContent = "+";
 
-    const quantity = document.createElement("div");
-    quantity.classList.add("no-of-items");
-    quantity.textContent = cartItem.quantity;
+      const quantity = document.createElement("div");
+      quantity.classList.add("no-of-items");
+      quantity.textContent = cartItem.quantity;
 
-    const deleteBtn = document.createElement("div");
-    deleteBtn.classList.add("delete-icon");
+      const deleteBtn = document.createElement("div");
+      deleteBtn.classList.add("delete-icon");
 
-    const deleteIcon = document.createElement("img");
-    deleteIcon.src = "assets/icons/delete.svg";
-    deleteBtn.appendChild(deleteIcon);
+      const deleteIcon = document.createElement("img");
+      deleteIcon.src = "assets/icons/delete.svg";
+      deleteBtn.appendChild(deleteIcon);
 
-    btns.appendChild(minusBtn);
-    btns.appendChild(quantity);
-    btns.appendChild(addBtn);
-    btns.appendChild(deleteBtn);
-    secondLeftGroup.appendChild(btns);
+      btns.appendChild(minusBtn);
+      btns.appendChild(quantity);
+      btns.appendChild(addBtn);
+      btns.appendChild(deleteBtn);
+      secondLeftGroup.appendChild(btns);
 
-    itemCard.appendChild(firstLeftGroup);
-    itemCard.appendChild(secondLeftGroup);
-  });
+      itemCard.appendChild(firstLeftGroup);
+      itemCard.appendChild(secondLeftGroup);
+    });
+  } else {
+    emptyCart();
+  }
+}
+
+function emptyCart() {
+  const emptyCartContent = document.querySelector(".empty-cart");
+  emptyCartContent.style.display = "block";
 }
 
 function decrementQuantity() {
@@ -92,13 +102,16 @@ function decrementQuantity() {
 
       const clickedItem = cartItems.find((item) => item.name === productName);
 
-      if (clickedItem.quantity) {
+      if (clickedItem.quantity > 0) {
         clickedItem.quantity -= 1;
         console.log(cartItems);
         noOfItems.textContent = "";
         noOfItems.textContent = clickedItem.quantity;
+        cartItems = localStorage.setItem("cartItems", cartItems);
       } else {
         itemCard.style.display = "none";
+        console.log(cartItems.indexOf(clickedItem));
+        // cartItems.splice(cartItems.indexOf(clickedItem));
       }
     });
   });

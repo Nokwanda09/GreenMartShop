@@ -1,5 +1,6 @@
 // List of cart items
 let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
 let products = [];
 
 async function fetchProducts() {
