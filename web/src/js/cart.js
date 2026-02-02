@@ -120,8 +120,8 @@ function decrementQuantity() {
         if (cartItems.length === 0) {
           emptyCart();
         }
-        console.log(cartItems);
       }
+      calculateCartTotal();
     });
   });
 }
@@ -140,7 +140,7 @@ function addNoOfItems() {
       const item = cartItems.find((item) => item.name === productName);
       noOfItems.textContent = "";
       noOfItems.textContent = ++item.quantity;
-      console.log(item.quantity);
+      calculateCartTotal();
     });
   });
 }
@@ -162,10 +162,35 @@ function deleteItemsFromCart() {
 
       cartItems = cartItems.filter((item) => item.name !== productName);
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      calculateCartTotal();
     });
   });
+}
+
+function calculateSubtotal() {
+  const subtotalField = document.querySelector(".subtotal");
+
+  console.log(cartItems);
+  const cartSubtotal = cartItems.reduce((subtotal, item) => {
+    return subtotal + Number(item.price) * item.quantity;
+  }, 0);
+
+  subtotalField.textContent = "R" + cartSubtotal.toFixed(2);
+
+  return cartSubtotal;
+}
+
+function calculateCartTotal() {
+  const subTotal = calculateSubtotal();
+  const deliveryFee = 20.99;
+  const orderTotal = subTotal + deliveryFee;
+
+  const total = document.querySelector(".total-amount");
+
+  total.textContent = orderTotal.toFixed(2);
 }
 
 displayCartItems();
 changeItemQuantity();
 deleteItemsFromCart();
+calculateCartTotal();
