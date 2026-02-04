@@ -190,7 +190,33 @@ function calculateCartTotal() {
   total.textContent = orderTotal.toFixed(2);
 }
 
+function listenToForm(form, onSubmit) {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const customerInfo = Object.fromEntries(new FormData(event.target));
+    onSubmit(customerInfo);
+  });
+}
+
+function getCustomerInfo() {
+  // let customerInfo;
+  const customerDetailsForm = document.querySelector(".clientDetailsForm");
+
+  listenToForm(customerDetailsForm, (customerInfo) => {
+    console.log(customerInfo);
+  });
+
+  // console.log(Object.fromEntries(new FormData(event.target)));
+
+  // const fullName = customerInfo.get("full-name");
+  // const email = customerInfo.get("email");
+  // const phoneNumber = customerInfo.get("phone-number");
+  // const address = customerInfo.get("address");
+}
+
 displayCartItems();
 changeItemQuantity();
 deleteItemsFromCart();
 calculateCartTotal();
+getCustomerInfo();
