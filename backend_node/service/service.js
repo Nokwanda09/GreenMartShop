@@ -3,6 +3,7 @@ import {
   getCustomerFromDb,
   getProductFromDb,
   getProductsFromSpecificCarFromDb,
+  addCustomerToDb,
 } from "../database/database.js";
 
 export async function getProducts() {
@@ -22,10 +23,14 @@ export async function getProductsFromCategory(category) {
   return await getProductsFromSpecificCarFromDb(category);
 }
 
-async function customerExists(email) {
-  const customer = getCustomer(email);
-  if (customer) return true;
-  return false;
+async function getCustomerId(customerInfo) {
+  const existingCustomer = await getCustomer(customerInfo.email);
+  if (existingCustomer.length !== 0) {
+    return existingCustomer[0].id;
+  } else {
+    const newCustomer = await addCustomerToDb(customerInfo);
+    return newCustomer[0].id;
+  }
 }
 
 async function addOrder() {
@@ -36,4 +41,11 @@ async function addOrder() {
   }
 }
 
-console.log(getCustomer("nokwa@email"));
+const customerId = await getCustomerId({
+  full_name: "Sing",
+  email: "sing@gmail.com",
+  phone_number: "0345673432",
+  address: "1 Sa Rd",
+});
+
+console.log(customerId);

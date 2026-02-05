@@ -56,13 +56,17 @@ export async function addCustomerToDb(customerInfo) {
       customerInfo.address,
     ],
   );
+
+  return await getCustomerFromDb(customerInfo.email);
 }
 
-addCustomerToDb({
-  full_name: "Sing",
-  email: "sing@gmail.com",
-  phone_number: "0345673432",
-  address: "1 Si Rd",
-});
+// console.log(
+//   await addCustomerToDb({
+//     full_name: "Sing",
+//     email: "sing@gmail.com",
+//     phone_number: "0345673432",
+//     address: "1 Si Rd",
+//   }),
+// );
 
 // console.log(await getProductsFromDb());
