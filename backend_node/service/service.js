@@ -28,4 +28,12 @@ async function customerExists(email) {
   return false;
 }
 
+async function addOrder() {
+  if (customerExists(email)) {
+    // Add order to the order table
+  } else {
+    // Add customer to the database, then to the order table
+  }
+}
+
 console.log(getCustomer("nokwa@email"));

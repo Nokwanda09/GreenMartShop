@@ -42,3 +42,27 @@ export async function getProductsFromSpecificCarFromDb(category) {
 
   return products[0];
 }
+
+export async function addCustomerToDb(customerInfo) {
+  const customer = await pool.query(
+    `INSERT INTO 
+    customers(full_name, email, phone, address) 
+    VALUES (?, ?, ?, ?
+   )`,
+    [
+      customerInfo.full_name,
+      customerInfo.email,
+      customerInfo.phone_number,
+      customerInfo.address,
+    ],
+  );
+}
+
+addCustomerToDb({
+  full_name: "Sing",
+  email: "sing@gmail.com",
+  phone_number: "0345673432",
+  address: "1 Si Rd",
+});
+
+// console.log(await getProductsFromDb());
