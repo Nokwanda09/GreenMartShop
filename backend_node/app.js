@@ -2,13 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import { productsRouter } from "./routes/productsRouter.js";
-
-import {
-  getProducts,
-  getCustomer,
-  getProduct,
-  getProductsFromCategory,
-} from "./service/service.js";
+import { customerRouter } from "./routes/customerRouter.js";
 
 const app = express();
 app.use(express.json());
@@ -16,12 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/products", productsRouter);
-
-app.get("/customer/:email", async (req, res) => {
-  // const email = ;
-  const customer = await getCustomer(req.params.email);
-  res.send(customer);
-});
+app.use("/customer", customerRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

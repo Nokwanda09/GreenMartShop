@@ -1,6 +1,5 @@
 import {
   getProducts,
-  getCustomer,
   getProduct,
   getProductsFromCategory,
 } from "../service/service.js";
