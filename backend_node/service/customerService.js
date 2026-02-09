@@ -1,0 +1,16 @@
+import { getCustomerFromDb, addCustomerToDb } from "../database/database.js";
+
+export async function getCustomer(email) {
+  const customer = await getCustomerFromDb(email);
+  return customer;
+}
+
+async function getCustomerId(customerInfo) {
+  const existingCustomer = await getCustomer(customerInfo.email);
+  if (existingCustomer.length !== 0) {
+    return existingCustomer[0].id;
+  } else {
+    const newCustomer = await addCustomerToDb(customerInfo);
+    return newCustomer[0].id;
+  }
+}

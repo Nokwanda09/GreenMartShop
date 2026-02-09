@@ -2,7 +2,7 @@ import {
   getProducts,
   getProduct,
   getProductsFromCategory,
-} from "../service/service.js";
+} from "../service/productService.js";
 
 export const getProductsController = async (req, res) => {
   const products = await getProducts();

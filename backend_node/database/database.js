@@ -1,5 +1,4 @@
 import mysql from "mysql2";
-import path from "path";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -20,13 +19,6 @@ export async function getProductsFromDb() {
   return products[0];
 }
 
-export async function getCustomerFromDb(email) {
-  const customer = await pool.query("SELECT * FROM customers WHERE email = ?", [
-    email,
-  ]);
-  return customer[0];
-}
-
 export async function getProductFromDb(name) {
   const product = await pool.query("SELECT * FROM products WHERE name =  ?", [
     name,
@@ -41,6 +33,13 @@ export async function getProductsFromSpecificCarFromDb(category) {
   );
 
   return products[0];
+}
+
+export async function getCustomerFromDb(email) {
+  const customer = await pool.query("SELECT * FROM customers WHERE email = ?", [
+    email,
+  ]);
+  return customer[0];
 }
 
 export async function addCustomerToDb(customerInfo) {
@@ -59,14 +58,3 @@ export async function addCustomerToDb(customerInfo) {
 
   return await getCustomerFromDb(customerInfo.email);
 }
-
-// console.log(
-//   await addCustomerToDb({
-//     full_name: "Sing",
-//     email: "sing@gmail.com",
-//     phone_number: "0345673432",
-//     address: "1 Si Rd",
-//   }),
-// );
-
-// console.log(await getProductsFromDb());
