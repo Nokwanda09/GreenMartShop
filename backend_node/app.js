@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 
+import { productsRouter } from "./routes/productsRouter.js";
+
 import {
   getProducts,
   getCustomer,
@@ -13,10 +15,15 @@ app.use(express.json());
 
 app.use(cors());
 
-app.get("/products", async (req, res) => {
-  const products = await getProducts();
-  res.send(products);
-});
+app.use("/", productsRouter);
+
+// app.get("/products", async (req, res) => {
+//   console.log("Getting productssssss");
+
+//   const products = await getProducts();
+//   console.log(products);
+//   res.send(products);
+// });
 
 app.get("/customer/:email", async (req, res) => {
   // const email = ;
