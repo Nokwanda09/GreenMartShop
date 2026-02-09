@@ -15,32 +15,12 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use("/", productsRouter);
-
-// app.get("/products", async (req, res) => {
-//   console.log("Getting productssssss");
-
-//   const products = await getProducts();
-//   console.log(products);
-//   res.send(products);
-// });
+app.use("/products", productsRouter);
 
 app.get("/customer/:email", async (req, res) => {
   // const email = ;
   const customer = await getCustomer(req.params.email);
   res.send(customer);
-});
-
-app.get("/:product", async (req, res) => {
-  const product = await getProduct(req.params.product);
-
-  res.send(product);
-});
-
-app.get("/category/:category", async (req, res) => {
-  const products = await getProductsFromCategory(req.params.category);
-
-  res.send(products);
 });
 
 app.use((err, req, res, next) => {

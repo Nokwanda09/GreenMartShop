@@ -1,23 +1,15 @@
 import express from "express";
 
 import {
-  getProducts,
-  getCustomer,
-  getProduct,
-  getProductsFromCategory,
-} from "../service/service.js";
-
-import { getProductsController } from "../controllers/controller.js";
-
-// console.log(getProductsController);
+  getProductsController,
+  getProductController,
+  getProductsFromCategoryController,
+} from "../controllers/productsController.js";
 
 export const productsRouter = express.Router();
 
-// productsRouter.get("/products", async (req, res) => {
-//   const products = await getProducts();
-//   res.send(products);
-// });
+productsRouter.get("/", getProductsController);
 
-productsRouter.get("/products", getProductsController);
+productsRouter.get("/:productName", getProductController);
 
-// export default pro/ductsRouter;
+productsRouter.get("/category/:category", getProductsFromCategoryController);
