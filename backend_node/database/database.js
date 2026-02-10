@@ -58,3 +58,25 @@ export async function addCustomerToDb(customerInfo) {
 
   return await getCustomerFromDb(customerInfo.email);
 }
+
+export async function addOrder(customerId, total) {
+  const order = await pool.query(
+    "INSERT INTO orders VALUES (?, ?)",
+    customerId,
+    total,
+  );
+
+  return order;
+}
+
+export async function addOrderItem(order_id, product_id, quantity, price) {
+  const orderItem = await pool.query(
+    `INSERT INTO 
+    order_items(order_is, product_id, quantity, price) 
+    VALUES ?, ?, ?, ? `,
+    order_id,
+    product_id,
+    quantity,
+    price,
+  );
+}

@@ -1,3 +1,4 @@
+import { it } from "node:test";
 import { displayProductsInShopping } from "./main.js";
 
 // Filter functionality

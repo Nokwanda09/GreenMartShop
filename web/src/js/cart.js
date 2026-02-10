@@ -190,6 +190,7 @@ function calculateCartTotal() {
   total.textContent = orderTotal.toFixed(2);
 }
 
+// This function listens to the and reacts when the submit button is clicked and renders customer info
 function listenToForm(form, onSubmit) {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -199,12 +200,12 @@ function listenToForm(form, onSubmit) {
   });
 }
 
-function getCustomerInfo() {
-  // let customerInfo;
+function orderDetails() {
   const customerDetailsForm = document.querySelector(".clientDetailsForm");
 
   listenToForm(customerDetailsForm, (customerInfo) => {
     console.log(customerInfo);
+    sendOrderToServer(customerInfo);
   });
 
   // console.log(Object.fromEntries(new FormData(event.target)));
@@ -215,8 +216,55 @@ function getCustomerInfo() {
   // const address = customerInfo.get("address");
 }
 
+async function getCustomerId(customerInfo) {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/customer/${customerInfo}`,
+    );
+
+    const data = await response.json();
+    return data.customerId;
+  } catch (error) {
+    console.log("Encountered a problem trying to fetch customer id");
+    console.log(error);
+  }
+}
+
+async function formatOrderItems(customerInfo) {
+  const customerId = await getCustomerId(customerInfo);
+  const orderItems = localStorage.getItem("cartItems").map((item) => ({
+    name: item.name,
+    quantity: item.quantity,
+  }));
+
+  return { customerId: customerId, orderItems: orderItems };
+}
+
+async function sendOrderToServer(customerInfo) {
+  try {
+    const response = await fetch(`http://localhost:3000/order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(await formatOrderItems(customerInfo)),
+    });
+
+    if (!response.ok) {
+      console.log(response);
+    } else {
+      const data = await response.json();
+      console.log(data);
+    }
+  } catch (error) {
+    console.log("Can't send order to the server");
+    console.log(error);
+  }
+}
+
 displayCartItems();
 changeItemQuantity();
 deleteItemsFromCart();
 calculateCartTotal();
-getCustomerInfo();
+// console.log(getCustomerInfo());
+orderDetails();
