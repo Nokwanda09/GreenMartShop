@@ -4,6 +4,7 @@ import {
   getItemPriceFromDb,
   addOrderItem,
   getProductFromDb,
+  updateStockAmount,
 } from "../database/database.js";
 
 async function calculateTotal(orderItems) {
@@ -37,8 +38,10 @@ export async function addOrderItemsService(order) {
     const product = await getProductFromDb(item.name.trim());
     const price = Number(product.price);
     const productId = product.product_id;
+    const updatedStockAmount = product.stock - quantity;
 
     addOrderItem(orderId, productId, quantity, price);
+    updateStockAmount(updatedStockAmount, product.name);
   });
 }
 
@@ -50,5 +53,5 @@ const ordert = {
   ],
 };
 
-const i = await addOrderItemsService(ordert);
+// const i = await addOrderItemsService(ordert);
 // console.log(i);

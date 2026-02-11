@@ -98,4 +98,13 @@ export async function fetchLastOrderId(customer_id) {
   return order_id[0][0].order_id;
 }
 
-// console.log(await getProductFromDb("banana"));
+export async function updateStockAmount(updatedStockAmount, productName) {
+  const stockAmount = await pool.query(
+    `
+  UPDATE products
+  SET stock = ?
+  WHERE name = ?;
+`,
+    [updatedStockAmount, productName],
+  );
+}
