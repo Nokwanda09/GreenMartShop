@@ -1,7 +1,9 @@
 import {
   addOrderToDb,
-  //   addOrderItemsToDb,
+  fetchLastOrderId,
   getItemPriceFromDb,
+  addOrderItem,
+  getProductFromDb,
 } from "../database/database.js";
 
 async function calculateTotal(orderItems) {
@@ -18,11 +20,26 @@ async function calculateTotal(orderItems) {
   return total;
 }
 
-export async function addOrder(orderItems) {
+export async function addOrderService(orderItems) {
   const customerId = orderItems.customerId;
   const total = await calculateTotal(orderItems.cartItems);
   const order = addOrderToDb(customerId, total);
   return order;
+}
+
+export async function addOrderItemsService(order) {
+  const customerId = order.customerId;
+  const orderId = await fetchLastOrderId(customerId);
+  const orderItems = order.cartItems;
+
+  orderItems.map(async (item) => {
+    const quantity = item.quantity;
+    const product = await getProductFromDb(item.name.trim());
+    const price = Number(product.price);
+    const productId = product.product_id;
+
+    addOrderItem(orderId, productId, quantity, price);
+  });
 }
 
 const ordert = {
@@ -33,8 +50,5 @@ const ordert = {
   ],
 };
 
-const i = await addOrder(ordert);
-
-// const i = await calculateTotal(ordert.cartItems);
-// const i = await getItemPriceFromDb("banana");
-console.log(i);
+const i = await addOrderItemsService(ordert);
+// console.log(i);

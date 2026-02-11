@@ -68,15 +68,12 @@ export async function addOrderToDb(customerId, total) {
   return order;
 }
 
-export async function addOrderItem(order_id, product_id, quantity, price) {
+export async function addOrderItem(orderId, productId, quantity, price) {
   const orderItem = await pool.query(
     `INSERT INTO 
-    order_items(order_is, product_id, quantity, price) 
-    VALUES ?, ?, ?, ? `,
-    order_id,
-    product_id,
-    quantity,
-    price,
+    order_items(order_id, product_id, quantity, price) 
+    VALUES (?, ?, ?, ?) `,
+    [orderId, productId, quantity, price],
   );
 }
 
@@ -89,3 +86,16 @@ export async function getItemPriceFromDb(itemName) {
   );
   return price[0][0].price;
 }
+
+export async function fetchLastOrderId(customer_id) {
+  const order_id = await pool.query(
+    `
+    SELECT order_id FROM orders WHERE customer_id = ? ORDER BY order_id DESC LIMIT 1;
+`,
+    [customer_id],
+  );
+
+  return order_id[0][0].order_id;
+}
+
+// console.log(await getProductFromDb("banana"));

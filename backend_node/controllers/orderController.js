@@ -1,6 +1,7 @@
-// import { orderService } from "../service/orderService.js";
+import { addOrderService } from "../service/orderService.js";
 
 export const addOrderController = async (req, res) => {
   const orderItems = req.body;
-  res.send(orderItems);
+  const order = await addOrderService(orderItems);
+  res.send(order);
 };
