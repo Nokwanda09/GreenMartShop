@@ -59,11 +59,10 @@ export async function addCustomerToDb(customerInfo) {
   return await getCustomerFromDb(customerInfo.email);
 }
 
-export async function addOrder(customerId, total) {
+export async function addOrderToDb(customerId, total) {
   const order = await pool.query(
-    "INSERT INTO orders VALUES (?, ?)",
-    customerId,
-    total,
+    "INSERT INTO orders(customer_id, total_amount) VALUES (?, ?)",
+    [customerId, total],
   );
 
   return order;
@@ -79,4 +78,14 @@ export async function addOrderItem(order_id, product_id, quantity, price) {
     quantity,
     price,
   );
+}
+
+export async function getItemPriceFromDb(itemName) {
+  const price = await pool.query(
+    `
+    SELECT price FROM products
+    WHERE name= ?`,
+    itemName,
+  );
+  return price[0][0].price;
 }
