@@ -5,7 +5,7 @@ export async function getCustomer(email) {
   return customer;
 }
 
-async function getCustomerId(customerInfo) {
+export async function getCustomerId(customerInfo) {
   const existingCustomer = await getCustomer(customerInfo.email);
   if (existingCustomer.length !== 0) {
     return existingCustomer[0].id;

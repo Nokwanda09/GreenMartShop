@@ -49,9 +49,9 @@ export async function addCustomerToDb(customerInfo) {
     VALUES (?, ?, ?, ?
    )`,
     [
-      customerInfo.full_name,
+      customerInfo.fullName,
       customerInfo.email,
-      customerInfo.phone_number,
+      customerInfo.phoneNumber,
       customerInfo.address,
     ],
   );
