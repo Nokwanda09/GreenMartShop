@@ -218,9 +218,11 @@ function orderDetails() {
 
 async function getCustomerId(customerInfo) {
   try {
-    const response = await fetch(
-      `http://localhost:3000/customer/${customerInfo}`,
-    );
+    const response = await fetch(`http://localhost:3000/customer/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(customerInfo),
+    });
 
     const data = await response.json();
     return data.customerId;
@@ -232,12 +234,15 @@ async function getCustomerId(customerInfo) {
 
 async function formatOrderItems(customerInfo) {
   const customerId = await getCustomerId(customerInfo);
-  const orderItems = localStorage.getItem("cartItems").map((item) => ({
+  const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  const orderItems = cartItems.map((item) => ({
     name: item.name,
     quantity: item.quantity,
   }));
 
-  return { customerId: customerId, orderItems: orderItems };
+  console.log({ customerId: customerId, orderItems: orderItems });
+
+  return { customerId: customerId, cartItems: orderItems };
 }
 
 async function sendOrderToServer(customerInfo) {

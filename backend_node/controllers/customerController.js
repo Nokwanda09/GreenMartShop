@@ -10,5 +10,5 @@ export const getCustomerIdController = async (req, res) => {
   console.log(customerInfo);
   const customerId = await getCustomerId(customerInfo);
   console.log(customerId);
-  res.send(customerId);
+  res.send({ customerId: customerId });
 };
