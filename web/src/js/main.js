@@ -143,7 +143,7 @@ export function displayProductsInShopping(products) {
 }
 
 // Add to cart functionality
-function addItemToCart() {
+export function addItemToCart() {
   const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
 
   addToCartBtns.forEach((addToCartBtn) => {

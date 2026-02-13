@@ -1,5 +1,5 @@
-import { it } from "node:test";
-import { displayProductsInShopping } from "./main.js";
+// import { it } from "node:test";
+import { displayProductsInShopping, addItemToCart } from "./main.js";
 
 // Filter functionality
 const filterItems = document.querySelectorAll(".filter-item");
@@ -14,6 +14,7 @@ filterItems.forEach((filterItem) => {
     const products = await getCategoryProducts(selectedItem);
     console.log(products);
     displayProductsInShopping(products);
+    addItemToCart();
   });
 });
 
@@ -25,9 +26,10 @@ async function getCategoryProducts(category) {
     if (category === "all") {
       response = await fetch(`http://localhost:3000/products`);
     } else {
-      response = await fetch(`http://localhost:3000/category/${category}`);
+      response = await fetch(
+        `http://localhost:3000/products/category/${category}`,
+      );
     }
-
     if (!response.ok) {
       console.log(response);
     }
