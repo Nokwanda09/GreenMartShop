@@ -2,7 +2,7 @@ import {
   getProductsFromDb,
   getProductFromDb,
   getProductsFromSpecificCarFromDb,
-} from "../database/database.js";
+} from "../models/productsModel.js";
 
 export async function getProducts() {
   return await getProductsFromDb();

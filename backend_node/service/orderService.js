@@ -1,11 +1,12 @@
+import { addOrderToDb, fetchLastOrderId } from "../models/orderModel.js";
+
+import { addOrderItem } from "../models/orderItemsModel.js";
+
 import {
-  addOrderToDb,
-  fetchLastOrderId,
-  getItemPriceFromDb,
-  addOrderItem,
   getProductFromDb,
   updateStockAmount,
-} from "../database/database.js";
+  getItemPriceFromDb,
+} from "../models/productsModel.js";
 
 async function calculateTotal(orderItems) {
   const itemTotals = await Promise.all(

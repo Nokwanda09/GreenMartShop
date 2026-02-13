@@ -1,4 +1,4 @@
-import { getCustomerFromDb, addCustomerToDb } from "../database/database.js";
+import { getCustomerFromDb, addCustomerToDb } from "../models/customerModel.js";
 
 export async function getCustomer(email) {
   const customer = await getCustomerFromDb(email);
