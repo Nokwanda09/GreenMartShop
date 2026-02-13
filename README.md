@@ -97,7 +97,7 @@ Client → Express Server → MySQL Database
 
 ## ⚙ Installation & Setup
 ### 1. Clone Repository
-``git clone ``
+``git clone https://github.com/Nokwanda09/GreenMartShop.git``
 
 ### 2. Install Dependencies
 ``npm install``
