@@ -194,6 +194,7 @@ export function getCartItems() {
 
 window.addEventListener("DOMContentLoaded", async () => {
   products = await fetchProducts();
+  sessionStorage.setItem("products", JSON.stringify(products));
   const path = window.location.pathname;
 
   if (path.includes("/index.html")) {

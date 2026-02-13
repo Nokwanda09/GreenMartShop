@@ -52,6 +52,3 @@ const ordert = {
     { name: " pears", quantity: 1 },
   ],
 };
-
-// const i = await addOrderItemsService(ordert);
-// console.log(i);

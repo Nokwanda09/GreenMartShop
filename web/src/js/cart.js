@@ -1,7 +1,6 @@
 import { addItem } from "./main.js";
 
 let cartItems = JSON.parse(localStorage.getItem("cartItems"));
-// console.log(cartItems);
 
 function displayCartItems() {
   const cartItemsSection = document.querySelector(".cart-items");
@@ -21,7 +20,9 @@ function displayCartItems() {
       itemImage.classList.add("item-image");
 
       const image = document.createElement("img");
-      image.src = "";
+      const products = JSON.parse(sessionStorage.getItem("products"));
+      const product = products.find((item) => item.name === cartItem.name);
+      image.src = product.image;
       image.alt = "Product Image";
       itemImage.appendChild(image);
 
@@ -271,5 +272,4 @@ displayCartItems();
 changeItemQuantity();
 deleteItemsFromCart();
 calculateCartTotal();
-// console.log(getCustomerInfo());
 orderDetails();
