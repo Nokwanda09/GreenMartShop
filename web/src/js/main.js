@@ -12,7 +12,7 @@ async function fetchProducts() {
     }
 
     const data = await response.json();
-    return data;
+    return data.products;
   } catch (error) {
     console.log(error);
   }

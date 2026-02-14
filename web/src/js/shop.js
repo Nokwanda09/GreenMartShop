@@ -12,7 +12,6 @@ filterItems.forEach((filterItem) => {
     let selectedItem = filterItem.innerText;
 
     const products = await getCategoryProducts(selectedItem);
-    console.log(products);
     displayProductsInShopping(products);
     addItemToCart();
   });
@@ -35,7 +34,7 @@ async function getCategoryProducts(category) {
     }
 
     const data = await response.json();
-    return data;
+    return data.products;
   } catch (error) {
     console.log(error);
   }

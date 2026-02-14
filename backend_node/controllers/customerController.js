@@ -1,14 +1,22 @@
 import { getCustomer, getCustomerId } from "../service/customerService.js";
 
 export const getCustomerController = async (req, res) => {
-  const customer = await getCustomer(req.params.email);
-  res.send(customer);
+  const customerEmail = req.params.email;
+
+  if (!customerEmail) {
+    res.status(400).json({ error: "Customer email is missing" });
+  }
+
+  const customer = await getCustomer(customerEmail);
+  res.status(201).json({ customer: customer[0] });
 };
 
 export const getCustomerIdController = async (req, res) => {
   const customerInfo = req.body;
-  console.log(customerInfo);
+
+  if (!customerInfo) {
+    res.status(400).json({ error: "Customer info is missing" });
+  }
   const customerId = await getCustomerId(customerInfo);
-  console.log(customerId);
-  res.send({ customerId: customerId });
+  res.status(201).json({ customerId: customerId });
 };

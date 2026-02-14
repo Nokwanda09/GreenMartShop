@@ -6,17 +6,24 @@ import {
 
 export const getProductsController = async (req, res) => {
   const products = await getProducts();
-  res.send(products);
+  res.status(201).json({ products: products });
 };
 
 export const getProductController = async (req, res) => {
-  const product = await getProduct(req.params.productName);
-  res.send(product);
+  const productName = req.params.productName;
+
+  if (!productName) res.status(401).json({ error: "Product name is missing" });
+
+  const product = await getProduct(productName);
+  res.status(201).json({ product: product });
 };
 
 export const getProductsFromCategoryController = async (req, res) => {
-  console.log(req.params.category);
+  const category = req.params.category;
+
+  if (!category) res.status(400).json({ error: "Product category is missing" });
+
   const products = await getProductsFromCategory(req.params.category);
 
-  res.send(products);
+  res.status(201).json({ products: products });
 };

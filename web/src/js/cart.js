@@ -171,7 +171,6 @@ function deleteItemsFromCart() {
 function calculateSubtotal() {
   const subtotalField = document.querySelector(".subtotal");
 
-  console.log(cartItems);
   const cartSubtotal = cartItems.reduce((subtotal, item) => {
     return subtotal + Number(item.price) * item.quantity;
   }, 0);
