@@ -1,0 +1,141 @@
+:root {
+  --primary-green: #45a049;
+  --primary-brown: #3e2723;
+  --secondary-brown: #523d39;
+  --third-brown: #746461;
+  --primary-white: white;
+  --extra-detail-color: #4e5865;
+  --nav-hight: 90px;
+}
+
+* {
+  font-family: "DM Sans", sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0;
+  height: 100vh;
+}
+
+.green-section {
+  background-image:
+    linear-gradient(rgba(34, 110, 57, 0.9), rgba(34, 110, 57, 0.9)),
+    url("../../assets/images/backgroung-register.jpg");
+
+  background-size: cover;
+  background-position: center;
+  align-content: center;
+  text-align: center;
+  color: #ffff;
+  padding: 150px 50px 200px 50px;
+}
+
+.benefits {
+  margin-top: 40px;
+}
+
+.benefit {
+  margin-bottom: 30px;
+}
+
+.benefit .icon {
+  margin: 0 auto;
+  background-color: #518c64;
+  width: 60px;
+  height: 60px;
+  padding: 20px 10px 0 10px;
+  border-radius: 50%;
+}
+
+.benefit p {
+  margin-top: 5px;
+}
+
+/* White section */
+.white-section {
+  padding: 150px 50px 200px 50px;
+  text-align: center;
+}
+
+.shop-logo {
+  height: 60px;
+  width: 60px;
+  margin: 0 auto;
+}
+
+.shop-logo img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.heading {
+  color: rgba(101, 109, 117, 0.933);
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.form-component {
+  display: block;
+}
+
+form label {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.user-detail {
+  margin-bottom: 15px;
+  height: 30px;
+  width: 400px;
+  border-radius: 5px;
+  border: 1px solid #e0dada;
+}
+
+input:focus,
+input:hover {
+  outline: 2px solid #45a049;
+}
+
+.remember-me {
+  color: rgba(101, 109, 117, 0.933);
+}
+
+.extra {
+  display: flex;
+  justify-content: space-between;
+  /* padding-right: 150px; */
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  font-weight: bold;
+  background-color: var(--primary-green);
+  border: var(--primary-green);
+  border-radius: 5px;
+  color: var(--primary-white);
+}
+
+button:focus,
+button:hover {
+  outline: 2px solid #518c64;
+}
+
+@media (max-width: 450px) {
+  .green-section {
+    display: none;
+  }
+}
