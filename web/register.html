@@ -41,22 +41,24 @@
       <h2>Create Account</h2>
       <p class="heading">Join us and start your shopping journey</p>
 
-      <form>
+      <form class="create-account-form">
         <label for="fullName" class="form-component">Full Name</label>
-        <input
-          type="text"
-          name="fullName"
-          id="fullName"
-          class="form-component user-detail"
-          required
-        />
+        <div class="input-icon">
+          <input
+            type="text"
+            name="fullName"
+            id="fullName"
+            class="form-component user-detail"
+            required
+          />
+        </div>
 
         <label for="email" class="form-component">Email Address</label>
         <input
           type="email"
           name="email"
           id="email"
-          class="form-component user-detail"
+          class="form-component user-detail email-input"
           required
         />
 
@@ -65,7 +67,7 @@
           type="text"
           name="phoneNumber"
           id="phoneNumber"
-          class="form-component user-detail"
+          class="form-component user-detail phone-number-input"
           required
         />
 
@@ -83,21 +85,26 @@
           type="password"
           name="password"
           id="password"
-          class="form-component user-detail"
+          class="form-component user-detail password"
           required
         />
 
         <label for="confirm-password" class="form-component">Password</label>
         <input
-          type="confirm-password"
-          name="confirmpassword"
+          type="password"
+          name="confirmPassword"
           id="confirm-password"
-          class="form-component user-detail"
+          class="form-component user-detail confirm-password"
           required
         />
 
         <button type="submit">Create Account</button>
+        <p class="create-account">
+          Already have an account? <a href="./signin.html">Sign in</a>
+        </p>
       </form>
     </div>
+
+    <script src="./src/js/profile.js"></script>
   </body>
 </html>
