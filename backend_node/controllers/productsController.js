@@ -6,16 +6,24 @@ import {
 
 export const getProductsController = async (req, res) => {
   const products = await getProducts();
-  res.status(201).json({ products: products });
+  if (products) {
+    res.status(201).json({ products: products });
+  } else {
+    res.status(404).json({ error: "Products Not Found" });
+  }
 };
 
 export const getProductController = async (req, res) => {
   const productName = req.params.productName;
 
-  if (!productName) res.status(401).json({ error: "Product name is missing" });
+  if (!productName) res.status(400).json({ error: "Product name is missing" });
 
   const product = await getProduct(productName);
-  res.status(201).json({ product: product });
+  if (product) {
+    res.status(201).json({ product: product });
+  } else {
+    res.status(404).json({ error: "Product Not Found" });
+  }
 };
 
 export const getProductsFromCategoryController = async (req, res) => {
@@ -25,5 +33,9 @@ export const getProductsFromCategoryController = async (req, res) => {
 
   const products = await getProductsFromCategory(req.params.category);
 
-  res.status(201).json({ products: products });
+  if (products) {
+    res.status(201).json({ products: products });
+  } else {
+    res.status(201).json({ products: products });
+  }
 };

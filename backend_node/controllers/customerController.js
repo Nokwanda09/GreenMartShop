@@ -8,7 +8,11 @@ export const getCustomerController = async (req, res) => {
   }
 
   const customer = await getCustomer(customerEmail);
-  res.status(201).json({ customer: customer[0] });
+  if (customer) {
+    res.status(200).json({ customer: customer[0] });
+  } else {
+    res.status(404).json({ error: "User not Found" });
+  }
 };
 
 export const getCustomerIdController = async (req, res) => {
@@ -18,5 +22,9 @@ export const getCustomerIdController = async (req, res) => {
     res.status(400).json({ error: "Customer info is missing" });
   }
   const customerId = await getCustomerId(customerInfo);
-  res.status(201).json({ customerId: customerId });
+  if (customerId) {
+    res.status(201).json({ customerId: customerId });
+  } else {
+    res.status(404).json({ error: "User not found" });
+  }
 };
