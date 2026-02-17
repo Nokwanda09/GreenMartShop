@@ -76,11 +76,73 @@ function listenToForm(form, onSubmit) {
   });
 }
 
+async function sendCreateAccountRequest(accountDetails) {
+  const response = await fetch("http://localhost:3000/register", {
+    headers: {
+      method: "POST",
+      "Content-Type": "application/json",
+    },
+    body: {
+      fullName: accountDetails.fullName,
+      emailAdress: accountDetails.email,
+      phoneNumber: accountDetails.phoneNumber,
+      deliveryAdress: accountDetails.deliveryAdress,
+      password: accountDetails.confirmPassword,
+    },
+  });
+
+  if (response.ok) {
+    const data = response.json();
+    console.log(data);
+  } else {
+    // Tell the user that an error occurred, she must try again
+  }
+}
+
 function createAccount() {
   const createAccountForm = document.querySelector(".create-account-form");
 
   listenToForm(createAccountForm, (accountDetails) => {
     console.log(accountDetails);
+    if (
+      validateEmail(accountDetails.email) &&
+      validatePhoneNumber(accountDetails.phoneNumber) &&
+      passwordMatches(accountDetails.password, accountDetails.confirmPassword)
+    ) {
+      sendCreateAccountRequest(accountDetails);
+    } else {
+      // Insert a paragraph to tell user to ensure that all info is valid
+    }
+  });
+}
+
+async function sendLoginRequest(accountDetails) {
+  const response = await fetch("http://localhost:3000/login", {
+    headers: {
+      method: "POST",
+      "Content-Type": "application/json",
+    },
+    body: {
+      email: accountDetails.email,
+      password: accountDetails.password,
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+  } else {
+    // Tell the user that access denied, she must try again or create account if the doesn't have any
+  }
+
+  return response;
+}
+
+function signUserIn() {
+  const loginForm = document.querySelector(".querySelector");
+
+  listenToForm(loginForm, (accountDetails) => {
+    sendLoginRequest(accountDetails);
   });
 }
 
