@@ -23,7 +23,7 @@ POST http://localhost:3000/customer/login
 Content-Type: application/json
 
 {
-    "emailAddress" : "nokwanda@gmail.com",
+    "emailAddress" : "nokwandampu@gmail.com",
     "password" : "nokwanda123"
 }
 

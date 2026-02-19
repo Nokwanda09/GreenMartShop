@@ -8,18 +8,13 @@ export async function getCustomer(email) {
   return customer;
 }
 
-export async function getCustomerId(customerInfo) {
-  const existingCustomer = await getCustomer(customerInfo.email);
-  if (existingCustomer.length !== 0) {
-    return existingCustomer[0].id;
-  } else {
-    const newCustomer = await addCustomerToDb(customerInfo);
-    return newCustomer[0].id;
-  }
-}
+// export async function getCustomerId(customerInfo) {
+//   const existingCustomer = await getCustomer(customerInfo.email);
+//   return existingCustomer[0].id;
+// }
 
-function generateAccessToken(payload) {
-  return jwt.sign({ name: "Nokwanda" }, process.env.ACCESS_TOKEN_SECRET);
+export function generateAccessToken(payload) {
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
 }
 
 async function hashPassword(password) {
@@ -27,7 +22,7 @@ async function hashPassword(password) {
   return await bcrypt.hash(password, saltRounds);
 }
 
-async function passwordMatches(enteredPassword, hashedPassword) {
+export async function passwordMatches(enteredPassword, hashedPassword) {
   return await bcrypt.compare(enteredPassword, hashedPassword);
 }
 
@@ -37,3 +32,27 @@ export async function createAccount(customerDetails) {
 
   return newCustomer[0];
 }
+
+// export async function loginUser(credentials, customer) {
+//   return generateAccessToken({
+//     id: customer.id,
+//     fullName: customer.full_name,
+//   });
+// }
+
+// const i = {
+//   id: 27,
+//   full_name: "Nokwanda Mpungose",
+//   email: "nokwandampu@gmail.com",
+//   phone: "0632498956",
+//   created_at: "2026-02-19T15:42:11.000Z",
+//   address: "10 Mfula Rd",
+//   password: "$2b$10$xco9K3B3MdbYy5TsCnnvle8tVyDyo1fS4JvJkZ8uryGqLgGhJsmfy",
+// };
+
+// const c = {
+//   emailAddress: "nokwandampu@gmail.com",
+//   password: "nokwanda123",
+// };
+
+// console.log(await loginUser(c, i));
