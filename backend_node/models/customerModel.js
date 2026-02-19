@@ -10,16 +10,17 @@ export async function getCustomerFromDb(email) {
 export async function addCustomerToDb(customerInfo) {
   const customer = await pool.query(
     `INSERT INTO 
-    customers(full_name, email, phone, address) 
-    VALUES (?, ?, ?, ?
+    customers(full_name, email, phone, address, password) 
+    VALUES (?, ?, ?, ?, ?
    )`,
     [
       customerInfo.fullName,
-      customerInfo.email,
+      customerInfo.emailAddress,
       customerInfo.phoneNumber,
-      customerInfo.address,
+      customerInfo.deliveryAddress,
+      customerInfo.password,
     ],
   );
 
-  return await getCustomerFromDb(customerInfo.email);
+  return await getCustomerFromDb(customerInfo.emailAddress);
 }

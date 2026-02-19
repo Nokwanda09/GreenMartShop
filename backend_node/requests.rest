@@ -1,0 +1,30 @@
+GET http://localhost:3000/products
+
+###
+GET http://localhost:3000/products/fruits
+
+###
+GET http://localhost:3000/customer/nokwanda@gmail
+
+###
+POST http://localhost:3000/customer/register
+Content-Type: application/json
+
+{
+    "fullName" : "Nokwanda Mpungose",
+    "emailAddress" : "nokwandampu@gmail.com",
+    "phoneNumber" : "0632498956",
+    "deliveryAddress": "10 Mfula Rd",
+    "password" : "nokwanda123"
+ }
+
+###
+POST http://localhost:3000/customer/login
+Content-Type: application/json
+
+{
+    "emailAddress" : "nokwanda@gmail.com",
+    "password" : "nokwanda123"
+}
+
+

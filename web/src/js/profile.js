@@ -77,7 +77,7 @@ function listenToForm(form, onSubmit) {
 }
 
 async function sendCreateAccountRequest(accountDetails) {
-  const response = await fetch("http://localhost:3000/register", {
+  const response = await fetch("http://localhost:3000/customer/register", {
     headers: {
       method: "POST",
       "Content-Type": "application/json",
@@ -117,7 +117,7 @@ function createAccount() {
 }
 
 async function sendLoginRequest(accountDetails) {
-  const response = await fetch("http://localhost:3000/login", {
+  const response = await fetch("http://localhost:3000/customer/login", {
     headers: {
       method: "POST",
       "Content-Type": "application/json",
