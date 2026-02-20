@@ -5,8 +5,6 @@ export const authenticateToken = async (req, res, next) => {
 
   const token = authHeader && authHeader.split(" ")[1];
 
-  //   console.log(token);
-
   if (token == null) {
     res.status(401).send({ error: "User not authorized" });
   } else {

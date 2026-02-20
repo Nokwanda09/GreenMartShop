@@ -53,7 +53,7 @@ export const loginCustomerController = async (req, res) => {
         id: customer[0].id,
         fullName: customer[0].full_name,
       });
-      res.status(200).send(token);
+      res.status(200).send({ authToken: token });
     } else {
       res.status(403).send({ error: "Wrong Password" });
     }
