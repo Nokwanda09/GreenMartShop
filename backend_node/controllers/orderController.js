@@ -4,12 +4,13 @@ import {
 } from "../service/orderService.js";
 
 export const addOrderController = async (req, res) => {
-  const orderItems = req.body;
+  const orderItems = req.body.cartItems;
+  const customer = req.user;
 
   if (!orderItems) {
     res.status(400).json({ error: "Order items are missing" });
   }
-  const order = await addOrderService(orderItems);
-  addOrderItemsService(orderItems);
+  const order = await addOrderService(customer.id, orderItems);
+  addOrderItemsService(customer.id, orderItems);
   res.status(201).json({ status: "Order placed successfully" });
 };

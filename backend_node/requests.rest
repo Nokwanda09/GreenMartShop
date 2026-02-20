@@ -1,12 +1,13 @@
+### Gell app products
 GET http://localhost:3000/products
 
-###
+### Get all products in specific category
 GET http://localhost:3000/products/fruits
 
-###
+### Get user by email
 GET http://localhost:3000/customer/nokwanda@gmail
 
-###
+### Create new user account
 POST http://localhost:3000/customer/register
 Content-Type: application/json
 
@@ -18,7 +19,7 @@ Content-Type: application/json
     "password" : "nokwanda123"
  }
 
-###
+### Log in user
 POST http://localhost:3000/customer/login
 Content-Type: application/json
 
@@ -27,4 +28,16 @@ Content-Type: application/json
     "password" : "nokwanda123"
 }
 
+
+### Place order
+POST http://localhost:3000/order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImZ1bGxOYW1lIjoiTm9rd2FuZGEgTXB1bmdvc2UiLCJpYXQiOjE3NzE1ODYzNjV9.7IM3s40OxGMkAvm_oGjX3EBpeNOxi_MlKZnKoC79srU
+
+{
+    "cartItems": [
+        { "name": "cabbage", "quantity": 2 },
+        { "name": "carrot", "quantity": 5 }
+  ]
+}
 

@@ -21,22 +21,6 @@ export const getCustomerController = async (req, res) => {
   }
 };
 
-export const getCustomerIdController = async (req, res) => {
-  const customerInfo = req.body;
-
-  // if (!customerInfo) {
-  //   res.status(400).json({ error: "Customer info is missing" });
-  // }
-  // const customerId = await getCustomerId(customerInfo);
-  // if (customerId) {
-  //   res.status(201).json({ customerId: customerId });
-  // } else {
-  //   res.status(404).json({ error: "User not found" });
-  // }
-
-  res.send(customerInfo);
-};
-
 export const registerCustomerController = async (req, res) => {
   const customerDetails = req.body;
 

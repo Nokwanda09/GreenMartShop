@@ -22,17 +22,14 @@ async function calculateTotal(orderItems) {
   return total;
 }
 
-export async function addOrderService(orderItems) {
-  const customerId = orderItems.customerId;
-  const total = await calculateTotal(orderItems.cartItems);
+export async function addOrderService(customerId, orderItems) {
+  const total = await calculateTotal(orderItems);
   const order = addOrderToDb(customerId, total);
   return order;
 }
 
-export async function addOrderItemsService(order) {
-  const customerId = order.customerId;
+export async function addOrderItemsService(customerId, orderItems) {
   const orderId = await fetchLastOrderId(customerId);
-  const orderItems = order.cartItems;
 
   orderItems.map(async (item) => {
     const quantity = item.quantity;
