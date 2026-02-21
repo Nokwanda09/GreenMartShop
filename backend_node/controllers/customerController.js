@@ -5,6 +5,8 @@ import {
   generateAccessToken,
 } from "../service/customerService.js";
 
+import jwt from "jsonwebtoken";
+
 export const getCustomerController = async (req, res) => {
   const customerEmail = req.params.email;
 
@@ -49,11 +51,21 @@ export const loginCustomerController = async (req, res) => {
       customer[0].password,
     );
     if (passwordMatch) {
-      const token = generateAccessToken({
+      const user = {
         id: customer[0].id,
         fullName: customer[0].full_name,
+      };
+      const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: "15m",
       });
-      res.status(200).send({ authToken: token });
+      const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
+        expiresIn: "7d",
+      });
+
+      // Add the refresh token to the db - must be hashed
+      res
+        .status(200)
+        .send({ accessToken: accessToken, refreshToken: refreshToken });
     } else {
       res.status(403).send({ error: "Wrong Password" });
     }

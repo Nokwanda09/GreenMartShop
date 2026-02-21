@@ -28,6 +28,14 @@ Content-Type: application/json
     "password" : "nokwanda123"
 }
 
+### Send refresh token to get new access token
+POST http://localhost:3000/customer/refresh
+Content-Type: application/json
+
+{
+    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImZ1bGxOYW1lIjoiTm9rd2FuZGEgTXB1bmdvc2UiLCJpYXQiOjE3NzE3MTU3MTgsImV4cCI6MTc3MjMyMDUxOH0.1whWwqocDEU1-hLUkpD7Kp1BRe7T9_yZwHMcaiNMMFA"
+}
+
 
 ### Place order
 POST http://localhost:3000/order

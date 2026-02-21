@@ -17,3 +17,24 @@ export const authenticateToken = async (req, res, next) => {
     });
   }
 };
+
+export const refreshTokenController = async (req, res) => {
+  const refreshToken = req.body.refreshToken;
+
+  console.log(refreshToken);
+
+  if (!refreshToken) {
+    res.status(401).send({ error: "No Refresh Token" });
+  }
+
+  // Check if the refresh token exist in our database
+
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (error, user) => {
+    if (error) {
+      res.status(403).send({ error: "Invalid Refresh Token" });
+    }
+    const newAccessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+
+    res.json({ accessToken: newAccessToken });
+  });
+};
