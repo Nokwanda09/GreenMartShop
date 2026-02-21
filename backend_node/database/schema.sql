@@ -42,6 +42,16 @@ CREATE TABLE order_items (
  FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
+-- Refresh tokens table linked to user_id
+CREATE TABLE refresh_tokens (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  token VARCHAR(500) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  expires_at DATETIME NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 
 -- Insert values to the products table
 INSERT INTO products 
