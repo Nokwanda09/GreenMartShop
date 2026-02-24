@@ -1,9 +1,4 @@
-import {
-  getCustomer,
-  createAccount,
-  passwordMatches,
-  generateAccessToken,
-} from "../service/customerService.js";
+import { getCustomer, createAccount } from "../service/customerService.js";
 
 import jwt from "jsonwebtoken";
 

@@ -9,8 +9,9 @@ export const addOrderController = async (req, res) => {
 
   if (!orderItems) {
     res.status(400).json({ error: "Order items are missing" });
+  } else {
+    const order = await addOrderService(customer.id, orderItems);
+    addOrderItemsService(customer.id, orderItems);
+    res.status(201).json({ status: "Order placed successfully" });
   }
-  const order = await addOrderService(customer.id, orderItems);
-  addOrderItemsService(customer.id, orderItems);
-  res.status(201).json({ status: "Order placed successfully" });
 };

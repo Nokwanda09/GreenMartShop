@@ -29,23 +29,23 @@ Content-Type: application/json
 }
 
 ### Send refresh token to get new access token
-POST http://localhost:3000/customer/refresh
+POST http://localhost:3000/refresh
 Content-Type: application/json
 
 {
-    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImZ1bGxOYW1lIjoiTm9rd2FuZGEgTXB1bmdvc2UiLCJpYXQiOjE3NzE3MTU3MTgsImV4cCI6MTc3MjMyMDUxOH0.1whWwqocDEU1-hLUkpD7Kp1BRe7T9_yZwHMcaiNMMFA"
+    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImZ1bGxOYW1lIjoiTm9rd2FuZGEgTXB1bmdvc2UiLCJpYXQiOjE3NzE5MTMwMzUsImV4cCI6MTc3MjUxNzgzNX0.wG7Qpu3NS2HJS8O08Pz46MkgkHisMrpZ9_TmppMzufM"
 }
 
 
 ### Place order
 POST http://localhost:3000/order
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImZ1bGxOYW1lIjoiTm9rd2FuZGEgTXB1bmdvc2UiLCJpYXQiOjE3NzE1ODYzNjV9.7IM3s40OxGMkAvm_oGjX3EBpeNOxi_MlKZnKoC79srU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImZ1bGxOYW1lIjoiTm9rd2FuZGEgTXB1bmdvc2UiLCJpYXQiOjE3NzE5MTMwMzUsImV4cCI6MTc3MjUxNzgzNX0.PqpjJ3XaPf5e_2fsU23CGZ4hie1b33XOgv7m6PHhdpw
 
 {
     "cartItems": [
-        { "name": "cabbage", "quantity": 2 },
-        { "name": "carrot", "quantity": 5 }
+        { "name": "banana", "quantity": 1 },
+        { "name": "Rice", "quantity": 1 }
   ]
 }
 
